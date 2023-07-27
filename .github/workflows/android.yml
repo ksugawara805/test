@@ -25,5 +25,14 @@ jobs:
     - name: Build with Gradle
       run: ./gradlew build
 
-    - name: UnitTest
-      run: ./gradlew test{buildVariantName}UnitTest
+    - name: Install Android SDK
+      uses: malinskiy/action-android/install-sdk@release/0.0.5
+    - name: Build project
+      run: ./gradlew assemble --stacktrace
+    - name: Run instrumentation tests
+      uses: malinskiy/action-android/emulator-run-cmd@release/0.0.5
+      with:
+        cmd: ./gradlew connectedCheck --stacktrace
+        api: 33
+        tag: default
+        abi: x86
