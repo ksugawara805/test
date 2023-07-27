@@ -16,6 +16,6 @@ public class NumTest {
 
     @Test
     public void sum() {
-        assertEquals(5,n.sum(5,3));
+        assertEquals(8,n.sum(5,3));
     }
 }
